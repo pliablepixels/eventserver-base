@@ -84,7 +84,10 @@ RUN set -x \
         --output /zoneminder/defaultconfiges/secrets.ini \
         --set \
             secrets:ES_CERT_FILE="/config/ssl/cert.cer" \
-            secrets:ES_KEY_FILE="/config/ssl/key.pem"
+            secrets:ES_KEY_FILE="/config/ssl/key.pem" \
+            secrets:ZMES_PICTURE_URL="https://${ES_COMMON_NAME}/zm/index.php?view=image&eid=EVENTID&fid=snapshot&width=600" \  
+            secrets:ZM_PORTAL="https://${ES_COMMON_NAME}" \
+            secrets:ZM_API_PORTAL="https://${ES_COMMON_NAME}/api"          
 
 # Copy rootfs
 COPY --from=rootfs-converter /rootfs /
