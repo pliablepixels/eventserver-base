@@ -19,7 +19,7 @@ fdmove 1 100 \
           secrets:ZM_PORTAL="https://${ES_COMMON_NAME}"
 
 echo "Configuring ZoneMinder Common Name in Nginx Config" | info "[${program_name}] "
-sed -i "s|ES_COMMON_NAME|${ES_COMMON_NAME}|g" /etc/nginx/conf.d/
+sed -i "s|ES_COMMON_NAME|${ES_COMMON_NAME}|g" /etc/nginx/conf.d/ssl.conf
 
 if [[ "${GENERATE_DHPARAM}" = 1 && ! $(grep -R "ssl_dhparam" /etc/nginx/conf.d/ssl.conf) ]]; then 
   echo "Adding dhparam.pem config to ssl.conf"
