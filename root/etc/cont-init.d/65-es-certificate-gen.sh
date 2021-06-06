@@ -10,9 +10,13 @@ else
   echo "Using existing certificates at ssl..." | info "[${program_name}] "
 fi
 
-if [[ ! -f /config/ssl/dhparam.pem ]]; then
-  echo "Generating dhparam.pem..." | info "[${program_name}] "
-  openssl dhparam -out /config/ssl/dhparam.pem 4096
+if [[ "${GENERATE_DHPARAM}" -eq "1" ]]; then 
+  if [[ ! -f /config/ssl/dhparam.pem ]]; then
+    echo "Generating dhparam.pem..." | info "[${program_name}] "
+    openssl dhparam -out /config/ssl/dhparam.pem 4096
+  else
+    echo "Using existing dhparam.pem" | info "[${program_name}] "
+  fi
 else
-  echo "Using existing dhparam.pem" | info "[${program_name}] "
+  echo "Skipping dhparam.pem generation"
 fi
